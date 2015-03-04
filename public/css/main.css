@@ -1,0 +1,57 @@
+.anchor-tomain {
+    float: left;
+}
+.anchor-toauth {
+    float: right;
+}
+.reg {
+    margin: 30px;
+}
+.reg-button {
+    color: #34495e;
+    font-size: 16pt;
+    font-weight: bold;
+}
+.reg-field {
+    margin-right: 15px;
+    font-size: 12pt;
+    font-family: 'Arial';
+}
+.reg-field-info {
+    margin-top: 15px;
+    margin-bottom: 4px;
+    color: #34495e;
+    font-family: 'Helvetica';
+    font-size: 10pt;
+    font-weight: bold;
+}
+.title {
+    color: #34495e;
+    font-weight: 100;
+    font-family: 'Lato';
+    padding: 0;
+    margin: 2% 2% 20px;
+}
+.user {
+    margin-bottom: 20px;
+}
+.user-avatar {
+    float: left;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+.user-bottom {
+    clear: both
+}
+.user-comment {
+    font-family: 'Arial';
+    font-size: 12pt;
+    list-style-type: none;
+    margin: 10px 0 0 2%;
+    resize: none;
+}
+
+
+
+
+
