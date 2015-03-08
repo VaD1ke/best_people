@@ -1,30 +1,100 @@
-.anchor-tomain {
-    float: left;
-}
-.anchor-toauth {
+.anchor-to-auth, .anchor-to-reg {
     float: right;
 }
-.reg {
-    margin: 30px;
+
+.anchor-to-logout {
+    margin-top: 7%;
+    float: right;
 }
-.reg-button {
+
+.anchor-to-edit {
+    font-size: 11pt;
+    float: left;
+}
+
+.anchor-to-main {
+    float: left;
+}
+
+.auth-button {
+    margin-left: 10px;
     color: #34495e;
     font-size: 16pt;
     font-weight: bold;
 }
-.reg-field {
-    margin-right: 15px;
+
+.auth-field {
+    margin: 0 15px 22px 10px;
     font-size: 12pt;
     font-family: 'Arial';
 }
-.reg-field-info {
-    margin-top: 15px;
-    margin-bottom: 4px;
+
+.auth-field-info {
+    margin: 10px 0 10px 10px;
     color: #34495e;
     font-family: 'Helvetica';
     font-size: 10pt;
     font-weight: bold;
 }
+
+.edit-field {
+    margin: 0 5px 0 1%;
+    font-size: 12pt;
+    font-family: 'Arial';
+}
+
+.edit-field-info {
+    margin: 5% 0 4px 0;
+    color: #34495e;
+    font-family: 'Helvetica';
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.error {
+    color: #c0392b;
+    font-family: 'Helvetica';
+    font-size: 10pt;
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+.page-name-header {
+    margin: 2% 4% 3% 8%;
+    color: #34495e;
+    font-family: 'Lato';
+    font-weight: 100;
+}
+
+.preloader {
+    margin: 10% 30% 0 30%;
+}
+
+.reg {
+    margin: 30px;
+}
+
+.reg-button {
+    color: #34495e;
+    font-size: 16pt;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.reg-field {
+    margin: 0 5px 0 0;
+    font-size: 12pt;
+    font-family: 'Arial';
+}
+
+.reg-field-info {
+    margin: 25px 0 4px 0;
+    color: #34495e;
+    font-family: 'Helvetica';
+    font-size: 10pt;
+    font-weight: bold;
+}
+
 .title {
     color: #34495e;
     font-weight: 100;
@@ -32,26 +102,130 @@
     padding: 0;
     margin: 2% 2% 20px;
 }
-.user {
-    margin-bottom: 20px;
+
+.top {
+    margin: 0 50% 3% 7%;
 }
+
+.user {
+    border: 2px solid #34495e;
+    border-radius: 7px;
+    margin: 1% 50% 3% 7%;
+    padding: 5px 2px 5px 2px;
+}
+
 .user-avatar {
     float: left;
     margin-left: 20px;
     margin-right: 10px;
 }
-.user-bottom {
-    clear: both
+
+.user-button-up {
+    font-family: 'Helvetica';
+    font-size: 15pt;
+    font-weight: bold;
+    padding: 0;
+    margin: 0 3px 2px 3px;
+    width: 35px;
+    height: 35px;
+    display: block;
 }
+
+.user-button-down {
+    font-family: 'Helvetica';
+    font-size: 15pt;
+    font-weight: bold;
+    padding: 0;
+    margin: 0 3px 0 3px;
+    width: 35px;
+    height: 35px;
+    display: block;
+}
+
 .user-comment {
+    margin: 1% 0 2% 5%;
+    width: 43%;
+}
+
+.user-comment-footer {
+    color: #7f8c8d;
+    font-size: 11pt;
+    margin: 0 0 2% 0;
+}
+
+.user-comment-label {
+    margin: 0 0 0 5%;
+    color: #34495e;
+    font-family: 'Arial';
+    font-size: 16pt;
+    font-weight: 900;
+}
+
+.user-comment-write {
+    clear: both;
     font-family: 'Arial';
     font-size: 12pt;
-    list-style-type: none;
-    margin: 10px 0 0 2%;
+    margin: 10px 0 0 5%;
     resize: none;
+    width: 43%;
 }
 
+.user-comment-write-button {
+    color: #34495e;
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 3px 0 0 5%;
+}
 
+.user-info {
+    margin: 7% 50% 3% 7%;
+    padding: 5px 2px 5px 2px;
+}
 
+.user-info-auth {
+    float: right;
+    border: 1px solid #7f8c8d;
+    border-radius: 5px;
+    margin: 0 2% 5% 0;
+    padding: 10px 20px 10px 0;
+}
 
+.user-info-line {
+    background-color: #bdc3c7;
+    border-radius: 4px;
+    color: #bdc3c7;
+    height: 4px;
+}
 
+.user-info-login {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-size: 20pt;
+    font-weight: 400;
+    margin-left: 1%;
+}
+
+.user-rating {
+    color: #34495e;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16pt;
+}
+
+.user-vote-plus {
+    background-color: #2ECC71;
+    font-size: 12pt;
+    margin: 1% 0 1% 5%;
+    width: 43%;
+}
+
+.user-vote-minus {
+    background-color: #d64541;
+    font-size: 12pt;
+    margin: 1% 0 2% 5%;
+    width: 43%;
+}
+
+.user-vote-sign {
+    font-size: 16pt;
+    font-weight: bold;
+}

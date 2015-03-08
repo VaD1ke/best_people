@@ -39,7 +39,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Moscow',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'ru',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -137,6 +137,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -145,6 +146,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'Anhskohbo\NoCaptcha\NoCaptchaServiceProvider',
+        'Intervention\Image\ImageServiceProvider',
 
 	],
 
@@ -177,6 +180,7 @@ return [
 		'Form'      => 'Illuminate\Html\FormFacade',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
 		'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Image' => 'Intervention\Image\Facades\Image',
 		'Input'     => 'Illuminate\Support\Facades\Input',
 		'Inspiring' => 'Illuminate\Foundation\Inspiring',
 		'Lang'      => 'Illuminate\Support\Facades\Lang',

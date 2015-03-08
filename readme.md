@@ -1,23 +1,31 @@
-## Laravel PHP Framework
+## Введение
+Проект представляет собой веб-сайт, который позволяет людям голосовать друг за друга и определить, кто лучший человек Интернета.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Требования
+Необходимые компоненты:
+* php 5.4+
+* mysql
+* php5-fpm
+* php5-mysql
+* php gd 2
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Установка
+1. Создайте базу данных в mysql
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+2. Сотворите файл .env по шаблону файла .env.example
 
-## Official Documentation
+3. В нем запишите в нужные константы соответствующие данные. В DB_DATABASE запишите созданную перед этим базу данных (пункт 1) Например:
+ `DB_DATABASE=your_database_name
+  DB_USERNAME=your_database_login
+  DB_PASSWORD=your_database_password`
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+4. В том же файле допишите внизу файла следующие константы и значения (будет необходимо для капчи):
+ `NOCAPTCHA_SECRET=[6LfJHQMTAAAAANU0yipkKhcBvz132oIfhSwKkBPO]
+  NOCAPTCHA_SITEKEY=[6LfJHQMTAAAAABzb9KPA9IhxKWo-_hEbtxqBqfea]`
 
-## Contributing
+5. В корне проекта запустите миграции:
+ `php artisan migrate`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+6. ???????
 
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+7. PROFIT

@@ -1,12 +1,14 @@
 <?php namespace App;
 
 use Exception;
+use Auth;
+use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Model implements AuthenticatableContract {
-
+class User extends Model implements AuthenticatableContract
+{
 	use Authenticatable;
 
 	/**
@@ -21,7 +23,7 @@ class User extends Model implements AuthenticatableContract {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['login', 'password']; //TODO: replace here
+	protected $fillable = ['login', 'password', 'image_path', 'sex'];
 
     //protected $guarded = ['id'];
 
@@ -32,7 +34,7 @@ class User extends Model implements AuthenticatableContract {
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
-    protected $with = ['votes'];
+    protected $with = ['votes', 'comments'];
 
     protected $appends = ['mark_sum'];
 
@@ -62,20 +64,73 @@ class User extends Model implements AuthenticatableContract {
         return $this->votes->sum('mark');
     }
 
-    public static function getAllOrder()
+    public function getCommentDateAttribute()
     {
-        $users = User::with(['votes' => function($query) {
-            $query->orderByRaw('sum(mark)');
+        return $this->comments->created_at;
+    }
+
+    public function isVotedFor($user)
+    {
+        foreach ($this->voted as $userVoted) {
+            if ($userVoted->whom_voted_id === $user->id)
+                return $userVoted->mark;
+        }
+
+        return 0;
+    }
+
+
+    /*public static function getAllOrder()
+    {
+        $users = User::with(['votes' => function($query)
+        {
+            $query->orderBy('mark_sum', 'desc');
         }])->get();
         return $users;
+    }*/
+
+    public static function add($data)
+    {
+        if (!isset($data['avatar'])) {
+
+            if ($data['sex'] == 1) {
+                $data['avatar'] = "media/photo/male_default.png";
+            } elseif ($data['sex'] == 2) {
+                $data['avatar'] = "media/photo/female_default.png";
+            }
+
+            try {
+                $user = User::create([
+                    'login'      => $data['login'],
+                    'password'   => Hash::make($data['password']),
+                    'image_path' => $data['avatar'],
+                    'sex'        => $data['sex']
+                ]);
+            } catch (Exception $e) {
+                return $e;
+            }
+        } else {
+
+            try {
+                $user = User::create([
+                    'login' => $data['login'],
+                    'password' => Hash::make($data['password']),
+//                'image_path' => $data['avatar'],
+                    'sex' => $data['sex']
+                ]);
+            } catch (Exception $e) {
+                return $e;
+            }
+        }
+
+        return $user;
     }
+
 
     public static function get($id)
     {
-
         try {
             $user = User::findOrFail($id);
-
         } catch (Exception $e) {
             return $e;
         }
@@ -83,20 +138,20 @@ class User extends Model implements AuthenticatableContract {
         return $user;
     }
 
-    public static function add($data)
+
+    public static function login($data)
     {
-        try {
-            $user = User::create([
-                'login'      => $data['title'],
-                'password'   => $data['password'],
-                'image_path' => $data['image_path'],
-                'sex'        => $data['sex']
-            ]);
-        } catch(Exception $e) {
-            return $e;
+        if (Auth::check()) {
+            if (Auth::attempt(['login' => $data['login'], 'password' => $data['password']], $data['_token'])) {
+                //return redirect()->intended('dashboard');
+                return Auth::user();
+            } else {
+                return false;
+            }
+        } else {
+            return redirect('/');
         }
 
-        return $user;
     }
 
 }

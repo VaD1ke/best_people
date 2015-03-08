@@ -4,32 +4,41 @@
 
     <script src="/js/password.js"></script>
 
-    <a href="/">&lt;--на главную</a>
-    <a href="" class="anchor-toauth">Войти</a>
+    <a href="/">&#8592; на главную</a>
+    @if (Auth::check())
+        <a class="anchor-to-logout" href="/logout">Выйти</a>
+    @else
+        <a class="anchor-to-auth" href="/login">Войти</a>
+    @endif
+
+    <h2 class="page-name-header">Регистрация</h2>
 
     <section class="reg">
-        {!! Form::open() !!}
+        <form method="POST" action="http://vladik-site.local/registration" accept-charset="UTF-8" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <div class="reg-field-info">Логин*</div>
-        <input class="reg-field" type="text" name="login" autofocus required="required" size="15" maxlength="15">
+        <label class="reg-field-info">Логин*</label><br>
+        <input class="reg-field"  type="text" name="login" autofocus  size="15" maxlength="15">
+            @if ($errors->has('login')) <p class="error">{{ $errors->first('login') }}</p> @endif
         <br>
-        <div class="reg-field-info">Пароль*</div>
-        <input class="reg-field" type="password" style="float: left;" id="pword" required="required" size="15" maxlength="25">
+        <label class="reg-field-info">Пароль*</label><br>
+        <input class="reg-field"  type="password" name="password" style="float: left;" id="pword"  size="15" maxlength="25">
         <div class="reg-field-info"><input type="checkbox" id="showpword">Показать пароль</div>
+            @if ($errors->has('password')) <p class="error">{{ $errors->first('password') }}</p> @endif
         <br>
-        <div class="reg-field-info">Аватар</div>
-        <input class="reg-field" type="file" name="avatar" accept="image/gif, image/png, image/jpeg, ">
+        <label class="reg-field-info">Аватар (50x50, макс. 5мб)</label><br>
+        <input class="reg-field" type="file" name="avatar" accept="image/gif, image/png, image/jpeg">
+            @if ($errors->has('avatar')) <p class="error">{{ $errors->first('avatar') }}</p> @endif
         <br>
-        <div class="reg-field-info">Пол*</div>
-        <select class="reg-field">
-            <option>Мужской</option>
-            <option>Женский</option>
+        <label class="reg-field-info">Пол*</label><br>
+        <select class="reg-field" name="sex" >
+            <option selected value="1">Мужской</option>
+            <option value="2">Женский</option>
         </select>
         <br>
-        <div class="reg-field-info">* - обязательные поля</div>
+        <label class="reg-field-info">* - обязательные поля</label>
         <br>
         <input class="reg-button" type="submit" value="Подтвердить">
-        {!! Form::close() !!}
+        </form>
     </section>
 
 @stop
