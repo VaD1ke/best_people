@@ -34,8 +34,6 @@ class Vote extends Model {
                 ->first();
 
             if (is_null($vote)) {
-
-
                 try {
 
                     $vote = Vote::create([

@@ -72,7 +72,7 @@ class User extends Model implements AuthenticatableContract
     public function isVotedFor($user)
     {
         foreach ($this->voted as $userVoted) {
-            if ($userVoted->whom_voted_id === $user->id)
+            if ($userVoted->whom_voted_id == $user->id)
                 return $userVoted->mark;
         }
 
