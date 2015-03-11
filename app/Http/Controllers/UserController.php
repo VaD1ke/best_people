@@ -74,7 +74,7 @@ class UserController extends Controller
                 File::delete($oldFile);
             }
 
-            if ($width !== 50 || $height !== 50) {
+            if ($width != 50 || $height != 50) {
                 $image->resize(50, 50);
             }
 
@@ -99,15 +99,16 @@ class UserController extends Controller
 
         $user = User::get($id);
 
+        $votes = $user->votes->sortByDesc('updated_at');
+        $comments = $user->comments->sortByDesc('updated_at');
+
         if ($user instanceof ModelNotFoundException) {
 
             return 'Oops. Page not found';
 
         } else {
 
-            $user->comments->sortBy('created_at');
-
-            return view('user', ['user' => $user]);
+            return view('user', ['user' => $user, 'votes' => $votes, 'comments' => $comments]);
 
         }
     }
@@ -172,7 +173,7 @@ class UserController extends Controller
             $width = $image->width();
             $height = $image->height();
 
-            if ($width !== 50 || $height !== 50) {
+            if ($width != 50 || $height != 50) {
                 $image->resize(50, 50);
             }
 
@@ -205,7 +206,7 @@ class UserController extends Controller
 
         $data['mark'] = -1;
 
-         Vote::add($data);
+        Vote::add($data);
     }
 
 }

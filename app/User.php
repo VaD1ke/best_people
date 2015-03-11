@@ -80,47 +80,25 @@ class User extends Model implements AuthenticatableContract
     }
 
 
-    /*public static function getAllOrder()
-    {
-        $users = User::with(['votes' => function($query)
-        {
-            $query->orderBy('mark_sum', 'desc');
-        }])->get();
-        return $users;
-    }*/
-
     public static function add($data)
     {
-        if (!isset($data['avatar'])) {
 
-            if ($data['sex'] == 1) {
-                $data['avatar'] = "media/photo/male_default.png";
-            } elseif ($data['sex'] == 2) {
-                $data['avatar'] = "media/photo/female_default.png";
-            }
+        $avatar = '';
+        if ($data['sex'] == 1) {
+            $avatar = "media/photo/male_default.png";
+        } elseif ($data['sex'] == 2) {
+            $avatar = "media/photo/female_default.png";
+        }
 
-            try {
-                $user = User::create([
-                    'login'      => $data['login'],
-                    'password'   => Hash::make($data['password']),
-                    'image_path' => $data['avatar'],
-                    'sex'        => $data['sex']
-                ]);
-            } catch (Exception $e) {
-                return $e;
-            }
-        } else {
-
-            try {
-                $user = User::create([
-                    'login' => $data['login'],
-                    'password' => Hash::make($data['password']),
-//                'image_path' => $data['avatar'],
-                    'sex' => $data['sex']
-                ]);
-            } catch (Exception $e) {
-                return $e;
-            }
+        try {
+            $user = User::create([
+                'login'      => $data['login'],
+                'password'   => Hash::make($data['password']),
+                'image_path' => $avatar,
+                'sex'        => $data['sex']
+            ]);
+        } catch (Exception $e) {
+            return $e;
         }
 
         return $user;
@@ -143,7 +121,6 @@ class User extends Model implements AuthenticatableContract
     {
         if (Auth::check()) {
             if (Auth::attempt(['login' => $data['login'], 'password' => $data['password']], $data['_token'])) {
-                //return redirect()->intended('dashboard');
                 return Auth::user();
             } else {
                 return false;

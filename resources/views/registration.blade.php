@@ -14,7 +14,7 @@
     <h2 class="page-name-header">Регистрация</h2>
 
     <section class="reg">
-        <form method="POST" action="http://vladik-site.local/registration" accept-charset="UTF-8" enctype="multipart/form-data">
+        <form method="POST" action="/registration" accept-charset="UTF-8" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <label class="reg-field-info">Логин*</label><br>
         <input class="reg-field"  type="text" name="login" autofocus  size="15" maxlength="15">

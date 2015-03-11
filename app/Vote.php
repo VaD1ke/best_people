@@ -24,9 +24,10 @@ class Vote extends Model {
         return $this->belongsTo('App\User', 'whom_voted_id', 'id');
     }
 
+
     public static function add($data)
     {
-        if (Auth::user()->id !== $data['to']) {
+        if (Auth::user()->id != $data['to']) {
 
             $vote = Vote::where('who_voted_id', '=', Auth::user()->id)
                 ->where('whom_voted_id', '=', $data['to'])
@@ -57,5 +58,7 @@ class Vote extends Model {
         }
 
     }
+
+
 
 }

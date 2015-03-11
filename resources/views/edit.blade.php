@@ -6,7 +6,8 @@
     <div class="user-info-auth">
         <div style="float: right;">Привет, <a href="/user/ {{ Auth::user()->id }}">{{ Auth::user()->login }}</a></div>
         <img class="user-avatar" src="../{{ Auth::user()->image_path }}" alt="{{ Auth::user()->login }}"><br>
-        <a class="anchor-to-logout" href="/logout">Выйти</a>
+        <label class="user-rating-head">{{ Auth::user()->mark_sum }}</label>
+        <a class="anchor-to-logout" href="/logout" style="margin-top:5%;">Выйти</a>
     </div>
 
     <h2 class="page-name-header">Редактирование профиля</h2>
@@ -22,13 +23,13 @@
             @if ($errors->has('avatar')) <p class="error">{{ $errors->first('avatar') }}</p> @endif
             <br>
             <label class="edit-field-info">Пол</label><br>
-            @if (Auth::user()->sex === '1')
-                <select class="edit-field" name="sex" >
+            @if (Auth::user()->sex == '1')
+                <select class="edit-field" name="sex">
                     <option selected value="1">Мужской</option>
                     <option value="2">Женский</option>
                 </select>
-            @elseif (Auth::user()->sex === '2')
-                <select class="edit-field" name="sex" >
+            @elseif (Auth::user()->sex == '2')
+                <select class="edit-field" name="sex">
                     <option value="1">Мужской</option>
                     <option selected value="2">Женский</option>
                 </select>

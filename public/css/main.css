@@ -3,13 +3,13 @@
 }
 
 .anchor-to-logout {
-    margin-top: 7%;
+    margin-top: 1%;
     float: right;
 }
 
 .anchor-to-edit {
-    font-size: 11pt;
-    float: left;
+    font-size: 10pt;
+    float: right;
 }
 
 .anchor-to-main {
@@ -209,6 +209,15 @@
     font-family: "Roboto", Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 16pt;
+}
+
+.user-rating-head {
+    color: #34495e;
+    float: left;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16pt;
+    margin: 3% 0 0 7%;
 }
 
 .user-vote-plus {

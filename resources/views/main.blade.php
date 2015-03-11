@@ -9,7 +9,8 @@
             <div class="user-info-auth">
                 <div style="float: right;">Привет, <a href="/user/ {{ Auth::user()->id }}">{{ Auth::user()->login }}</a></div>
                 <img class="user-avatar" src="../{{ Auth::user()->image_path }}" alt="{{ Auth::user()->login }}">
-                <br><a class="anchor-to-edit" href="/edit">(ред.) </a>
+                <br><label class="user-rating-head">{{ Auth::user()->mark_sum }}</label>
+                <a class="anchor-to-edit"  href="/edit">(ред.) </a><br>
                 <a class="anchor-to-logout" href="/logout">Выйти</a>
             </div>
         @else
@@ -27,12 +28,12 @@
             @foreach($users as $user)
 
                 <section id="users" class="user button-container" data-user-id="{{ $user->id }}">
-                    @if (Auth::check() && Auth::user()->id !== $user->id)
+                    @if (Auth::check() && Auth::user()->id != $user->id)
                         <div style="float: right">
-                            @if (Auth::user()->isVotedFor($user) === '1')
+                            @if (Auth::user()->isVotedFor($user) == '1')
                                 <input class="user-button-up" type="submit" name="plus" value="+" disabled>
                                 <input class="user-button-down" type="submit" name="minus" value="-">
-                            @elseif (Auth::user()->isVotedFor($user) === '-1')
+                            @elseif (Auth::user()->isVotedFor($user) == '-1')
                                 <input class="user-button-up" type="submit" name="plus" value="+">
                                 <input class="user-button-down" type="submit" name="minus" value="-" disabled>
                             @else

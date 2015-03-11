@@ -10,7 +10,8 @@
             <div class="user-info-auth">
                 <div style="float: right;">Привет, <a href="/user/ {{ Auth::user()->id }}">{{ Auth::user()->login }}</a></div>
                 <img class="user-avatar" src="../{{ Auth::user()->image_path }}" alt="{{ Auth::user()->login }}">
-                <br><a class="anchor-to-edit" href="/edit">(ред.) </a>
+                <br><label class="user-rating-head">{{ Auth::user()->mark_sum }}</label>
+                <a class="anchor-to-edit"  href="/edit">(ред.) </a><br>
                 <a class="anchor-to-logout" href="/logout">Выйти</a>
             </div>
         @else
@@ -22,12 +23,12 @@
     <section id="main">
         <section id="inner">
             <section class="user-info button-container" data-user-id="{{ $user->id }}">
-                @if (Auth::check() && Auth::user()->id  !== $user->id)
+                @if (Auth::check() && Auth::user()->id  != $user->id)
                     <div style="float: right">
-                        @if (Auth::user()->isVotedFor($user) === '1')
+                        @if (Auth::user()->isVotedFor($user) == '1')
                             <input class="user-button-up" type="submit" name="plus" value="+" disabled>
                             <input class="user-button-down" type="submit" name="minus" value="-">
-                        @elseif (Auth::user()->isVotedFor($user) === '-1')
+                        @elseif (Auth::user()->isVotedFor($user) == '-1')
                             <input class="user-button-up" type="submit" name="plus" value="+">
                             <input class="user-button-down" type="submit" name="minus" value="-" disabled>
                         @else
@@ -45,29 +46,29 @@
 
 
 
-            @if(isset($user->votes) && count($user->votes))
-                @foreach($user->votes as $vote)
+            @if(isset($votes) && count($votes))
+                @foreach($votes as $vote)
 
-                    @if ($vote->mark === '1')
+                    @if ($vote->mark == '1')
                         <section class="user-vote-plus">
                             <p>
-                                {{ $vote->created_at }}
+                                {{ $vote->updated_at }}
                                 <a href="/user/{{ $vote->userVoted->id }}">{{ $vote->userVoted->login }}</a>
-                                @if ($vote->userVoted->sex === '1')
+                                @if ($vote->userVoted->sex == '1')
                                     поставил +
-                                @elseif ($vote->userVoted->sex === '2')
+                                @elseif ($vote->userVoted->sex == '2')
                                     поставила +
                                 @endif
                             </p>
 
                         </section>
-                    @elseif ($vote->mark === '-1')
+                    @elseif ($vote->mark == '-1')
                         <section class="user-vote-minus">
-                            {{ $vote->created_at }}
+                            {{ $vote->updated_at }}
                             <a href="/user/{{ $vote->userVoted->id }}">{{ $vote->userVoted->login }}</a>
-                            @if ($vote->userVoted->sex === '1')
+                            @if ($vote->userVoted->sex == '1')
                                 поставил -
-                            @elseif ($vote->userVoted->sex === '2')
+                            @elseif ($vote->userVoted->sex == '2')
                                 поставила -
                             @endif
                         </section>
@@ -79,27 +80,27 @@
 
     </section>
 
-    @if(isset($user->comments) && count($user->comments))
+    @if(isset($comments) && count($comments))
         <br><label class="user-comment-label">Комментарии</label>
-        @foreach($user->comments as $comment)
+        @foreach($comments as $comment)
             <section class="user-comment">
                 <div>{{ $comment->comment_text }}</div>
                 <div class="user-comment-footer">
-                    @if ($comment->userLeft->sex === '1')
+                    @if ($comment->userLeft->sex == '1')
                         Написал
-                    @elseif ($comment->userLeft->sex === '2')
+                    @elseif ($comment->userLeft->sex == '2')
                         Написала
                     @endif
                     <a href="/user/{{ $comment->userLeft->id }}">{{ $comment->userLeft->login }}</a>
-                    {{ $comment->created_at }}
+                    {{ $comment->updated_at }}
                 </div>
             </section>
         @endforeach
     @endif
+
     {!! Form::open() !!}
     @if (Auth::check())
         <div>
-
             <textarea class="user-comment-write" name="comment_text"  cols="60" maxlength="1000"
                       placeholder="Написать комментарий(макс. 1000 символов)" rows="6" wrap="soft"></textarea>
             @if ($errors->has('comment_text')) <p class="error" style="margin-left: 5%;">{{ $errors->first('comment_text') }}</p> @endif
